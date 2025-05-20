@@ -18,7 +18,7 @@ class Document(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     
     # RELATIONSHIP -- ONE DOCUMENT HAS MANY CHUNKS
-    chunks = relationship("DocumentChunk", back_populates="document", cascade="all, delete_orphan")
+    chunks = relationship("DocumentChunk", back_populates="document", cascade="all, delete-orphan")
     
 class DocumentChunk(Base):
     
@@ -29,7 +29,7 @@ class DocumentChunk(Base):
     chunk_index = Column(Integer, nullable=False)
     content = Column(Text, nullable=False)
     embedding = Column(JSONB, nullable=True)
-    metadata = Column(JSON, nullable=True)
+    chunk_metadata = Column(JSON, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     
     # RELATIONSHIP -- MANY CHUNKS BELONG TO ONE DOCUMENT
@@ -43,4 +43,4 @@ class QARecord(Base):
     question = Column(Text, nullable=False)
     answer = Column(Text, nullable=False)
     chain_trace = Column(JSONB, nullable=True)
-    created_at = Column(datetime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.utcnow)

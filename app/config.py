@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     # LLM SETTINGS
     OPENAI_API_KEY: str = os.getenv("DATABASE_URL", "") #! ADD KEY
     LLM_MODEL: str = os.getenv("OPENAI_API_KEY", "gpt-3.5-turbo")
-    EMBEDDING_MODEL: str = os.getenv*"EMBEDDING_MODEL", "text-embedding-ada-002"
+    EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "text-embedding-ada-002")
     
     # DOCUMENT PROCESSING
     CHUNK_SIZE: int = 1000

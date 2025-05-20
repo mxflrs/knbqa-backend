@@ -1,7 +1,7 @@
 from datetime import datetime
-from typing import Optional, List, Dict, Any
 from uuid import UUID
-from pydantic import BaseModel, Field
+from typing import Optional, List, Dict, Any
+from pydantic import BaseModel
 
 class DocumentBase(BaseModel):
     title: str
@@ -13,22 +13,29 @@ class DocumentResponse(DocumentBase):
     id: UUID
     created_at: datetime
     
-    class Config:
-        orm_mode = True
+    # class Config:
+    #     orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }
+
         
 class DocumentChunkBase(BaseModel):
     content: str
-    metadata: Optional[Dict[str, Any]] = None
+    chunk_metadata: Optional[Dict[str, Any]] = None
 
 class DocumentChunkCreate(DocumentChunkBase):
-    id: UUID
-    embedding: Optional[List[float]]
+    document_id: UUID
+    embedding: Optional[List[float]] = None
 
-class DocumentChunkCreate(DocumentChunkBase):
+class DocumentChunkResponse(DocumentChunkBase):
     id: UUID
     document_id: UUID
     chunk_index: int
     created_at: datetime
     
-    class Config:
-        orm_mode = True
+    # class Config:
+    #     orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }

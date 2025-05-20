@@ -7,7 +7,7 @@ from langchain_core.runnables import chain
 from langgraph.graph import END, StateGraph
 
 from app.config import settings
-from app.schemas.qa import ChainNode, ChainEdge, ChainVisualizationData
+from app.schemas.qa import ChainNode, ChainEdge, ChainVisualization
 
 class QAChain:
     # CHAIN COMBINES RETRIEVAL WITH GEN AND TRACES THE EXEC
@@ -163,7 +163,7 @@ class QAChain:
         nodes = [ChainNode(**node) for node in self.trace_data["nodes"]]
         edges = [ChainEdge(**edge) for edge in self.trace_data["edges"]]
         
-        chain_visualization = ChainVisualizationData(nodes=nodes, edges=edges)
+        chain_visualization = ChainVisualization(nodes=nodes, edges=edges)
         
         return {
             "question": question,

@@ -26,7 +26,7 @@ class QAResponse(BaseModel):
     id: UUID
     question: str
     answer: str
-    chain_trace: Optional[Dict[str, any]] = None
+    chain_trace: Optional[Dict[str, Any]] = None
     created_at: datetime
     
 class QAHistoryResponse(BaseModel):
@@ -36,6 +36,10 @@ class QAHistoryResponse(BaseModel):
     chain_trace: Optional[Dict[str, Any]] = None
     created_at: datetime
     
-    class Config:
-        orm_mode = True
+    # class Config:
+    #     orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }
+
     
