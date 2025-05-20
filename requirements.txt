@@ -1,0 +1,16 @@
+aiofiles>=23.2.1
+fastapi>=0.109.0
+langchain>=0.1.4
+langchain-community>=0.0.16
+langchain-openai>=0.0.5
+langchain-text-splitters>=0.0.1
+langgraph>=0.0.21
+numpy>=1.26.3
+openai>=1.6.1
+python-dotenv>=1.0.0
+python-multipart>=0.0.6
+SQLAlchemy>=2.0.25
+psycopg2-binary>=2.9.9
+pydantic>=2.5.3
+pydantic-settings>=2.1.0
+uvicorn>=0.25.0
