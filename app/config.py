@@ -11,12 +11,12 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     
     #DB
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "") # ! ADD THE DB URL HERE
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "")
     
     # LLM SETTINGS
-    OPENAI_API_KEY: str = os.getenv("DATABASE_URL", "") #! ADD KEY
-    LLM_MODEL: str = os.getenv("OPENAI_API_KEY", "gpt-3.5-turbo")
-    EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "text-embedding-ada-002")
+    OPENAI_API_KEY: str = os.getenv("DATABASE_URL", "")
+    LLM_MODEL: str = os.getenv("OPENAI_API_KEY", "gpt-4o")
+    EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
     
     # DOCUMENT PROCESSING
     CHUNK_SIZE: int = 1000
