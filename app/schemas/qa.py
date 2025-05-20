@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional, List, Dict, Any
-from uuid import UUID
+from uuid import UUID, uuid4
 from pydantic import BaseModel, Field
 
 class QARequest(BaseModel):
@@ -21,9 +21,15 @@ class ChainEdge(BaseModel):
 class ChainVisualization(BaseModel):
     nodes: List[ChainNode]
     edges: List[ChainEdge]
+    
+class QAWorkflowState(BaseModel):
+    question: str
+    context: str = ""
+    answer: str = ""
+    question_node_id: str = ""
 
 class QAResponse(BaseModel):
-    id: UUID
+    id: UUID = Field(default_factory=uuid4)
     question: str
     answer: str
     chain_trace: Optional[Dict[str, Any]] = None

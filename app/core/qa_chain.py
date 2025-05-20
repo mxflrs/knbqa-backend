@@ -7,7 +7,7 @@ from langchain_core.runnables import chain
 from langgraph.graph import END, StateGraph
 
 from app.config import settings
-from app.schemas.qa import ChainNode, ChainEdge, ChainVisualization
+from app.schemas.qa import ChainNode, ChainEdge, ChainVisualization, QAWorkflowState
 
 class QAChain:
     # CHAIN COMBINES RETRIEVAL WITH GEN AND TRACES THE EXEC
@@ -60,8 +60,8 @@ class QAChain:
         
         return node_id
     
-    def _retrieve_context(self, state: Dict[str, Any]) -> Dict[str, Any]:
-        question = state["question"]
+    def _retrieve_context(self, state: QAWorkflowState) -> Dict[str, Any]:
+        question = state.question
         
         # ADD QUESTION TO TRACE
         question_id = self._add_to_trace(
@@ -86,15 +86,15 @@ class QAChain:
         
         # JOIN CONTEXT
         context = "\n\n".join(context_texts)
-        state["context"] = context
-        state["question_node_id"] = question_id
+        state.context = context
+        state.question_node_id = question_id
         return state
     
-    def _generate_answer(self, state: Dict[str, Any]) -> Dict[str, Any]:
+    def _generate_answer(self, state: QAWorkflowState) -> Dict[str, Any]:
         # GEN ANSWER BASED ON
-        question = state["question"]
-        context = state["context"]
-        question_node_id = state["question_node_id"]
+        question = state.question
+        context = state.context
+        question_node_id = state.question_node_id
         
         prompt_template = """
         Answer the question based only on the provided context. If the context doesn't contain 
@@ -131,12 +131,12 @@ class QAChain:
             edge_label="produces"
         )
         
-        state["answer"] = answer
+        state.answer = answer
         return state
     
     def _build_graph(self) -> StateGraph:
         # BUILD THE STATE GRAPH FOR THE QA CHAIN
-        workflow = StateGraph({"question": str, "context": str, "answer": str, "question_node_id": str})
+        workflow = StateGraph(QAWorkflowState)
         
         # ADD NODES FOR EACH STEP
         workflow.add_node("retrieve_context", self._retrieve_context)

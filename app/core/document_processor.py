@@ -10,7 +10,7 @@ class DocumentProcessor:
     def __init__(self):
         self.embeddings = OpenAIEmbeddings(
             model=settings.EMBEDDING_MODEL,
-            openai_api_type=settings.OPENAI_API_KEY
+            openai_api_key=settings.OPENAI_API_KEY
         )
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=settings.CHUNK_SIZE,
@@ -30,7 +30,7 @@ class DocumentProcessor:
         """
         
         # SPLIT TEXT INTO CHUNKS
-        text_chunks = self.embeddings.embed_query(chunk)
+        text_chunks = self.text_splitter.split_text(document_text)
         
         chunks_data = []
         for idx, chunk in enumerate(text_chunks):

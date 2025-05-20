@@ -51,9 +51,9 @@ class ChunkRepository:
                 chunk_index=idx,
                 content=chunk_data["content"],
                 embedding=chunk_data.get("embedding"),
-                metadata=chunk_data.get("metadata", {})
+                chunk_metadata=chunk_data.get("metadata", {})
             )
-            db_chunk.append(db_chunk)
+            db_chunks.append(db_chunk)
         
         db.add_all(db_chunks)
         db.commit()

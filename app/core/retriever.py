@@ -23,7 +23,7 @@ class VectorRetriever:
         b_norm = np.linalg.norm(b)
         return np.dot(a, b) / (a_norm * b_norm)
     
-    def retieve(self, query: str, top_k: int = None) -> List[Dict[str, Any]]:
+    def retrieve(self, query: str, top_k: int = None) -> List[Dict[str, Any]]:
         # RETURN LIST OF RELEVANT DOCS CHUNKS WITH SIMILARITY SCORES
         if top_k is None:
             top_k = settings.TOP_K_RETRIEVAL
