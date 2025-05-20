@@ -56,13 +56,13 @@ def get_document(
     document_id: uuid.UUID,
     db: Session = Depends(get_db)
 ):
-  document = DocumentRepository.get_docuent(db, document_id)  
-  if not document:
+    document = DocumentRepository.get_docuent(db, document_id)  
+    if not document:
         raise HTTPException(
             status_code=404,
             detail="Document not found"
         )
-        return document
+    return document
     
 @router.delete("/{document_id}")
 def delete_document(

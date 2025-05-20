@@ -97,15 +97,15 @@ class QAChain:
         question_node_id = state.question_node_id
         
         prompt_template = """
-        Answer the question based only on the provided context. If the context doesn't contain 
-        the information needed to answer the question, reply with "I don't have enough information 
-        to answer this question."
-        
+        Using only the provided context, answer the question as completely as possible. 
+        If the context does not contain any information related to the question, reply: 
+        "I don't have enough information to answer this question."
+
         Context:
         {context}
-        
+
         Question: {question}
-        
+
         Answer:
         """
         
