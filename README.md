@@ -1,9 +1,3 @@
-
----
-
-## **backend/README.md**
-
-```markdown
 # Knowledge Base Backend (FastAPI + Langchain)
 
 This is the **backend** for the Knowledge Base Q&A app. Built with **FastAPI**, **Langchain**, **LangGraph**, and **PostgreSQL**. Handles document ingestion, chunking, embeddings, and question answering using retrieval-augmented generation (RAG).
